@@ -39,7 +39,7 @@ app.get("/", async (req, res) => {
   try {
     const recipis = await recipiSchema.find();
     console.log(recipis);
-    res.render("recipis", { recipis });
+    res.render("recipis.ejs", { recipis });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
@@ -55,6 +55,11 @@ app.get("/recipi/:id", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+app.get("/recipi/:id/edit", async (req, res) => {
+    const filteredrecipi = await recipiSchema.find({ _id: req.params.id });
+    res.render("editrecipi.ejs", { book: filteredrecipi[0] });
+  });
 
 app.get("/createrecipi", (req, res) => {
   res.render("createrecipi");
