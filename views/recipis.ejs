@@ -13,7 +13,7 @@
     />
   </head>
   <body>
-    <%- include('navbar')%>
+    <% include('navbar') %>
     <div class="container">
       <h1 class="text-center">Recipes</h1>
       <table class="table" border="1">
@@ -23,6 +23,7 @@
             <th>Description</th>
             <th>Ingredients</th>
             <th>Instructions</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -33,19 +34,16 @@
             <td><%= recipis[i].ingredients %></td>
             <td><%= recipis[i].instructions %></td>
             <td>
-              <!-- <a href="/books/<%= recipis[i]._id %>" class="btn btn-primary">View</a>
-              <a href="/books/<%= recipis[i]._id %>/edit" class="btn btn-warning">Edit</a> -->
-              <form
-                <!-- action="/books/<%= recipis[i]._id %>/method=DELETE"
-                method="POST" style="display: inline">
+              <a href="/recipi/<%= recipis[i]._id %>" class="btn btn-primary">View</a>
+              <a href="/recipi/<%= recipis[i]._id %>/edit" class="btn btn-warning">Edit</a>
+              <form action="/recipi/<%= recipis[i]._id %>?_method=DELETE" method="POST" style="display: inline;">
                 <button type="submit" class="btn btn-danger">Delete</button>
-              </form> -->
+              </form>
             </td>
           </tr>
           <% } %>
         </tbody>
       </table>
-      <!-- <a href="/add-book" class="btn btn-primary">Add New Book</a> -->
     </div>
   </body>
 </html>
