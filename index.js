@@ -18,7 +18,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.set("view engine", "ejs");
 
-app.post("/createrecipi", async (req, res) => {
+const validateProductMiddleware=(req,res,next)=>{
+    const {title,description,ingredients,instructions}=req.body
+    if(!title||!description||!ingredients||!instructions)
+    {
+        return res.redirect('/')
+    }
+    next()
+    }
+
+app.post("/createrecipi",validateProductMiddleware, async (req, res) => {
     try {
       const { title, description, ingredients, instructions } = req.body;
       const newRecipi = new recipiSchema({
@@ -34,6 +43,8 @@ app.post("/createrecipi", async (req, res) => {
       res.status(500).send("Internal Server Error");
     }
   });
+
+
 
 app.get("/", async (req, res) => {
   try {
