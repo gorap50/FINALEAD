@@ -65,6 +65,28 @@ app.get("/createrecipi", (req, res) => {
   res.render("createrecipi");
 });
 
+app.post("/recipi/:id/upate-data", (req, res) => {
+    recipiSchema.updateOne({ _id: req.params.id }, req.body)
+      .then(() => {
+        console.log("Updated successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    res.redirect("/");
+  });
+
+  app.post("/recipi/:id/method=DELETE", async (req, res) => {
+    recipiSchema.deleteOne({ _id: req.params.id })
+      .then(() => {
+        console.log("Deleted successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    res.redirect("/");
+  });
+  
 
 
 app.listen(3005, () => {
