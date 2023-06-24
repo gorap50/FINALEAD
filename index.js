@@ -19,16 +19,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.set("view engine", "ejs");
 
-// app.get("/", async (req, res) => {
-//   try {
-//     const recipis = await recipiSchema.find();
-//     console.log(recipis)
-//     res.render("recipis", { recipis }); 
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send("Internal Server Error");
-//   }
-// });
+app.get("/", async (req, res) => {
+  try {
+    const recipis = await recipiSchema.find();
+    console.log(recipis)
+    res.render("recipis", { recipis }); 
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 app.get("/createrecipi", (req, res) => {
   res.render("createrecipi");
